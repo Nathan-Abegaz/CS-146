@@ -1,3 +1,8 @@
+//*
+  * Test class that checks uses JUnit Tests to check the experient with various input
+  *
+//
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
