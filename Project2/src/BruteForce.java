@@ -1,5 +1,7 @@
 import java.util.Random;
-
+/*
+ * Test class
+ */ 
 public class BruteForce {
 
 	private int sum = Integer.MIN_VALUE;
