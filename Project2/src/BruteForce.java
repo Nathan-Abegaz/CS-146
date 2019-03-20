@@ -1,14 +1,17 @@
-import java.util.Random;
 /*
- * Test class
+ * This class finds the max-sub array of by the naive approach, also known as the brute force.
+ * approach uses two for loops and iterates all possible combinations in an array until the max subbarray 
+ * is found. The time complexity of this approach is O(n^2) 
  */ 
 public class BruteForce {
 
-	private int sum = Integer.MIN_VALUE;
+	 private int sum = Integer.MIN_VALUE;
 	 int arrive = 0;
 	 int depart = 0;
+	 
 	private int tempArrive = 0;
 	private int tempDepart = 0;
+	
 	public int findMaxSubArray(int[] A)
 	{
 		for(int i = 0; i < A.length; i++)
@@ -17,6 +20,8 @@ public class BruteForce {
 			for(int j = i; j < A.length; j++)
 			{
 				tempSum += A[j];
+				// The moment the temporary sum is greater than the sum 
+				// the result is updates. 
 				if(tempSum > sum)
 				{
 					sum = tempSum;
@@ -25,33 +30,30 @@ public class BruteForce {
 				}			
 			}
 		}
+		
+		// handles special case if there are no days that are positive. 
 		if(sum < 0)
 		{
 			sum = 0;
 			arrive = -1;
 			depart = 0;
 		}
+
 		return sum;
 	}
 	
-	public static void main(String[] args)
-	{
-		Random random = new Random();
-		int[] test1 = {-3, -4, -5, -6, -7};
-		BruteForce test = new BruteForce();
-		test.findMaxSubArray(test1);
-		
-		/// Create randome array 
-		int[] list = new int[10];
-	    for (int i=0; i<10; i++){
-	        int n = random.nextInt(50 + 1 +50) - 50;
-	        list[i] = n;
-
-	        System.out.println(list[i] + " ");
-	    }
-		System.out.println("Max Sum: " + test.findMaxSubArray(list));
-		System.out.println( "Arrive index not found " + test.arrive);
-		System.out.println("Depart index not found " + test.depart);
+	// This function is a helper function that would be used for the experimental 
+	// analysis. Finds the time to complete the tasks.
+	public long findMaxSubArrayTime(int[] A)
+	{ 			
+		long beginningTime = System.nanoTime();
+		for(int i = 0; i < 10; i++)
+		{
+			findMaxSubArray(A);
+		}
+		long endTime = System.nanoTime();
+		System.out.println("The program took " + ((endTime - beginningTime)/10) + (" nanoseconds"));
+		long elapsedTime = (endTime-beginningTime);
+		return elapsedTime/10;
 	}
-	
 }
